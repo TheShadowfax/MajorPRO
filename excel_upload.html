@@ -1,0 +1,62 @@
+
+<html>
+    <head>
+        <title>Upload Excel</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <style> 
+        body {
+            background-image: url("1.jpg");
+            background-color: #cccccc;
+        }
+    	</style>
+    </head>
+    <body>
+        <div>
+            <?php include_once("navbar.html"); ?>
+        </div>
+		<div class="container">
+			<br>
+			<h2 style="text-align:center;color:white">NIEPID TLM Kits Registered People List</h2>
+			<br>
+		</div>
+        <div class="container col-md-8">
+			<form style="border:1px;border-style:solid;margin:0px;padding:25px;background-color:white;" 
+                    enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method='post'>
+				<br>
+				<div class="form-row">
+				    Upload Registered People List(Excel File) File name should be "registration_excel.xlsx".          
+				</div>
+				
+				
+				
+				<div class="form-group">
+					<br>
+					<input type="file" name="file" id="file" />    
+				    <input class="btn btn-primary" type="submit" name="submit" value="upload" style="color:white;float:right;"> 
+                </div>
+            </form>
+            <form style="border:1px;border-style:solid;margin:0px;padding:25px;background-color:white;" 
+                            action="<?php echo $_SERVER["PHP_SELF"]; ?>" method='post'>
+                <br>
+                <div align="center" style="background-color:white;">
+                    <p>Update the uploaded excel file records into the database </p>
+                    <input class="btn btn-primary" type="submit" name="run" value="Run query" style="color:white;">
+                </div><br>
+                <?php if(isset($msg))
+                        {
+                            echo $msg; 
+                            header("refresh:4;url=excel_upload.php");
+                        }
+                ?>
+			</form>
+            
+		</div>   
+        <script src="js/jquery-3.2.1.slim.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
+        
+    </body>

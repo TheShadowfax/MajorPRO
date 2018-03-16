@@ -1,0 +1,66 @@
+<html>
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+    <link href="css/undertakingcss.css" rel="stylesheet">
+    <title>TLM Kits Distribution</title>
+    <style> 
+        body {
+            background-image: url("1.jpg");
+            background-color: #cccccc;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var aadhar = document.forms["undertaking"]["aadhar"].value;
+            var name = document.forms["undertaking"]["name"].value;
+            if (aadhar.toString().length<12 || aadhar.toString().length>12 ) {
+                alert("Invalid aadhar number.");
+                return false;
+            }
+            var patt = new RegExp("[0-9]");
+            if(patt.test(name)){
+                alert("Invalid name.");
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    
+<div>
+    <?php include_once("navbar.html"); ?>        
+</div>
+
+<div class="testbox" style="height:480px;">
+  <h1>Undertaking</h1>
+
+  <form name='undertaking' method='post' action='' onsubmit="return validateForm()">
+        
+        <hr>
+            
+        <label id="icon" for="name"><i class="icon-asterisk "></i></label>
+        <input type="number" name="aadhar" id="aadhar" placeholder="Aadhar Number" required/>
+        <label id="icon" for="name"><i class="icon-user"></i></label>
+        <input type="text" name="fname" id="name" placeholder="First Name (on Aadhar)" required/>
+        <label id="icon" for="name"><i class="icon-asterisk"></i></label>
+        <input type="number" min="1" max="100" name="age" id="age" placeholder="Age" max="100" required/>
+        <br>
+        <!--<label id="icon" for="name"><i class="icon-shield"></i></label>
+        <input type="password" name="name" id="name" placeholder="Last Reg No (if any)"/>-->
+        <br><br>
+        <p>Conditions:<br>- Candidate age above 12 : shouldn't have received any kit in past 1 year.
+                 <br>- Candidate age below 12 : shouldn't have received any kit in past 3 years.<br><br></p>
+        <div align="center">
+            <input type="submit" class="btn btn-primary" name="submit" value="Proceed">
+        </div>
+  </form>
+</div>
+<br><br>
+
+   <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

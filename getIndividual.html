@@ -1,0 +1,68 @@
+<html lang="en">
+<head>  
+    <title>Details page</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style> 
+        body {
+            background-image: url("1.jpg");
+            background-color: #cccccc;
+        }
+    </style>
+
+</head>
+<script>
+	function validate()
+	{
+		var aadhar = document.forms["register"]["aadhar"].value;
+            	var fname = document.forms["register"]["fname"].value;		
+
+		if (aadhar.toString().length<12 || aadhar.toString().length>12 ) {
+                alert("Invalid aadhar number.");
+                document.getElementById("aadhar").focus();
+                return false;
+            	}
+            	var patt = new RegExp("[0-9]");
+            	if(patt.test(fname)){
+                	alert("Invalid first name.");
+                	document.getElementById("fname").focus();
+                	return false;
+            	}
+	}
+
+</script>
+
+<body>
+    <div class="container">
+        <br>
+        <h2 style="text-align:center;color:white;">NIEPID TLM Registration Details</h2>
+        <br>
+    </div>
+    <div class="container col-md-8">
+    <form name="register" action="retrieve.php" method="POST" id="getDetails" style="border:1px;border-style:solid;padding:25px;background-color:white;"
+	onsubmit="return validate()" >
+        <br>
+        
+        <div class="form-row">
+        <label for="aadhar" class="col-form-label">Aadhar Number :<b style="color:red;"> *</b></label>
+        <div class="form-group col-md-3">
+            <input type="number" name="aadhar" id="aadhar" class="form-control" placeholder="Enter 12 digit number"  required>
+        </div>
+        <label for="Name" class="col-form-label">First Name :<b style="color:red;"> *</b></label>
+        <div class="form-group col-md-3">
+            <input type="text" name="name" id="fname" class="form-control" minlength="4" required>
+        </div>
+        <div class="form-group col-md-2">
+            <input class="btn btn-secondary" type="submit" form="getDetails" value="Get Details">
+        </div>
+    </div>
+
+    </form>
+            </div>
+
+        <script src="js/jquery-3.2.1.slim.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        
+    
+    </body>
+    </html>

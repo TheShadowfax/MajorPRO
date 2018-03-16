@@ -1,0 +1,126 @@
+;
+; Installation file (.inf) for the SecuGen FDU05 fingerprint devices.
+;
+; (c) Copyright 2013 SecuGen Corp. 
+
+[Version]
+LayoutFile=Layout.inf, Layout1.inf, Layout2.inf  
+Signature="$Chicago$"                            ;win9x, winnt
+Provider=%SecuGen%
+Class=%BiometricClassName%
+ClassGuid={53D29EF7-377C-4D14-864B-EB3A85769359}
+DriverVer=09/13/2013,1.2.1.0
+CatalogFile.NT=sgfdu05x64.cat
+
+[ClassInstall32]
+Addreg=BiometricClassReg
+
+[BiometricClassReg]
+HKR,,,0,%BiometricClassName%
+HKR,,Icon,,-20
+
+[PreCopySection]
+HKR,,NoSetupUI,,1
+
+[SourceDisksNames]
+1 = %DISK1%,,,
+
+[SourceDisksFiles]
+sgfdu05x64.sys=1,,
+sgfdu05x64.dll=1,,
+sgfdu05m.dll=1,,
+
+[DestinationDirs]
+DefaultDestDir=10,System32\Drivers
+SGFDU05.Files.Ext = 10,System32\Drivers
+SGFDU05.Files.Dll = 11			; 9x - System Dir, NT - System32 Dir
+SGFDU05.Files.Dll.Wow64 = 10, SysWow64			; Windows\SysWow64
+
+[ControlFlags]
+;ExcludeFromSelect=*             ; removes all device here from the device installer list
+
+[Manufacturer]
+%SecuGen%=SecuGen, NTamd64
+
+[SecuGen.NTamd64]
+;----------------------------------------------------------------
+; FDU05, May 2013
+;----------------------------------------------------------------
+%USB\VID_1162&PID_2200.DeviceDesc%=SGFDU05, USB\VID_1162&PID_2200	; SDU05 (FAP20)
+
+
+; =================== FDU05 USB FRD Driver ===================
+;---------------
+; For Win98...
+;---------------
+[SGFPUSBHid]
+Include=hiddev.inf
+Needs=USBHIDDevice
+
+[SGFPUSBComposite]
+Include=usb.inf
+Needs=composite.dev
+
+[SGFDU05]
+CopyFiles=SGFDU05.Files.Ext, SGFDU05.Files.Dll, SGFDU05.Files.Dll.WOW64
+AddReg=SGFDU05.AddReg
+
+[SGFDU05.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,sgfdu05x64.sys
+
+[SGFDU05.Files.Ext]
+sgfdu05x64.sys
+
+[SGFDU05.Files.Dll]
+sgfdu05x64.dll
+
+[SGFDU05.Files.Dll.WOW64]
+sgfdu05m.dll
+
+;-------------------
+; For Windows NT...
+;-------------------
+; HID
+[SGFPUSBHid.NT]
+Include=input.inf
+Needs=HID_Inst.NT
+
+[SGFPUSBHid.NT.Services]
+Include=input.inf
+Needs=HID_Inst.NT.Services
+
+; composite
+[SGFPUSBComposite.NT]
+Include=usb.inf
+Needs= Composite.Dev.NT
+
+[SGFPUSBComposite.NT.Services]
+Include=usb.inf
+Needs=Composite.Dev.NT.Services
+
+; FRD
+[SGFDU05.NT]
+CopyFiles=SGFDU05.Files.Ext, SGFDU05.Files.Dll, SGFDU05.Files.Dll.WOW64
+
+[SGFDU05.NT.Services]
+Addservice = SGFDU05, 0x00000002, SGFDU05_AddService_Inst 
+
+[SGFDU05_AddService_Inst]
+DisplayName    = %SGFDU05.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 1                  ; SERVICE_SYSTEM_START 
+ErrorControl   = 0                  ; SERVICE_ERROR_IGNORE
+LoadOrderGroup = Pointer Port
+ServiceBinary  = %12%\sgfdu05x64.sys
+
+[Strings]
+SecuGen="SecuGen Corporation"
+DISK1="SecuGen Installation Disk"
+SGFDU05.SvcDesc="SecuGen USB FDU05 Service"
+BiometricClassName="Biometric"
+USB\VID_1162&PID_2200.DeviceDesc="SecuGen U20 USB FRD"
+
+
+
+

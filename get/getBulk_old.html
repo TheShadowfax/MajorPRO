@@ -1,0 +1,78 @@
+<html lang="en">
+<head>  
+    <title>Registration Details </title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style> 
+        body {
+            background-image: url("1.jpg");
+            background-color: #cccccc;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <h2 style="text-align:center;color:white;">Consolidated Registration List</h2>
+        <br>
+    </div>
+    <div class="container col-md-8">
+    <form action="19column.php" method="POST" id="getDetails" style="border:1px;border-style:solid;padding:25px;background-color:white;">
+        <br>
+        <br>
+        
+        <div class="form-row">
+        <label for="date" class="col-form-label">Registration Date :<b style="color:red;"> *</b></label>
+        <div class="form-group col-md-3">
+            <input type="text" name="Date" class="form-control" placeholder="dd/mm/yyyy" minlength="10" required>
+        </div>
+        <label for="place" class="col-form-label">State :<b style="color:red;"> *</b></label>
+        <div class="form-group col-md-3">
+            <input type="text" id="state" list="stateList" name="state" class="form-control" minlength="4" required>
+                <datalist id="stateList">
+                    <option data-value="Andhra Pradesh" value="Andhra Pradesh" />
+                    <option data-value="Arunachal Pradesh" value="Arunachal Pradesh" />
+                    <option data-value="Assam" value="Assam" />
+                    <option data-value="Bihar" value="Bihar" />
+                    <option data-value="Goa" value="Goa" />
+                    <option data-value="Gujarat" value="Gujarat" />
+                    <option data-value="Haryana" value="Haryana" />
+                    <option data-value="Himachal Pradesh" value="Himachal Pradesh" />
+                    <option data-value="Jammu & Kashmir" value="Jammu & Kashmir" />
+                    <option data-value="Karnataka" value="Karnataka" />
+                    <option data-value="Kerala" value="Kerala" />
+                    <option data-value="Madhya Pradesh" value="Madhya Pradesh" />
+                    <option data-value="Maharashtra" value="Maharashtra" />
+                    <option data-value="Manipur" value="Manipur" />
+                    <option data-value="Meghalaya" value="Meghalaya" />
+                    <option data-value="Mizoram" value="Mizoram" />
+                    <option data-value="Nagaland" value="Nagaland" />
+                    <option data-value="Orissa" value="Orissa" />
+                    <option data-value="Punjab" value="Punjab" />
+                    <option data-value="Rajasthan" value="Rajasthan" />
+                    <option data-value="Sikkim" value="Sikkim" />
+                    <option data-value="Tamil Nadu" value="Tamil Nadu" />
+                    <option data-value="Tripura" value="Tripura" />
+                    <option data-value="Uttar Pradesh" value="Uttar Pradesh" />
+                    <option data-value="West Bengal" value="West Bengal" />
+                    <option data-value="Chhattisgarh" value="Chhattisgarh" />
+                    <option data-value="Uttarakhand" value="Uttarakhand" />
+                    <option data-value="Jharkhand" value="Jharkhand" />
+                    <option data-value="Telangana" value="Telangana" />
+                </datalist>
+        </div>
+        <div class="form-group col-md-2 ui-widget">
+            <input class="btn btn-secondary" type="submit" form="getDetails" value="Get Details">
+        </div>
+    </div>
+    </form>
+            </div>
+
+            
+        <script src="js/jquery-3.2.1.slim.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    
+    </body>
+    </html>

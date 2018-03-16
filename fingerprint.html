@@ -1,0 +1,150 @@
+
+<html>
+<head>
+<title>Capture FingerPrint </title>
+</head>
+
+<script lang=javascript>
+
+var aaa = 0;
+function fnOpenDevice()
+{
+	for ( i=0; i<3; i++)
+	{
+		document.frmmain.objFP[i].DeviceID = -1;
+		document.frmmain.objFP[i].CodeName = 4;
+		document.frmmain.objFP[i].MinutiaeMode = 768;
+	}
+
+	// template format of objVerify should be the same to those of objFP[]
+	objVerify.MinutiaeMode = 768;
+	return;
+}
+
+
+function fnCapture(idx)
+{
+	document.frmmain.objFP[idx].Capture();
+	var result = document.frmmain.objFP[idx].ErrorCode;
+	if (result == 0)
+	{	
+		//var strimg1 = objFP.ImageTextData;
+	
+		var strmin = document.frmmain.objFP[idx].MinTextData;
+        if(idx==0)
+		    document.frmmain.min1.value = strmin;
+        else if(idx==1)
+           document.frmmain.min2.value = strmin;
+	}
+	else
+		alert('failed - ' + result);
+
+	return;
+}
+
+function fnRegister()
+{
+	var strmin1 = document.frmmain.min[0].value;
+	var strmin2 = document.frmmain.min[1].value;
+
+	if ( objVerify.RegisterForText(strmin1, strmin2) && objVerify.ErrorCode == 0 )
+		alert('success- registered');
+	else
+		alert('failed - ' + objVerify.ErrorCode);
+		
+	return;
+}
+
+function fnVerifyEx()
+{	
+	var strmin1 = document.frmmain.min[0].value;
+	var strmin2 = document.frmmain.min[1].value;
+	var strmin3 = document.frmmain.min[2].value;
+
+	if ( objVerify.VerifyExForText(strmin1, strmin2, strmin3) && objVerify.ErrorCode == 0)
+		alert('Success - matched');
+	else
+		alert('Failed - ' + objVerify.ErrorCode);
+	
+	return;
+}
+
+function fnVerify()
+{	
+	var strmin1 = document.frmmain.min[0].value;
+	var strmin2 = document.frmmain.min[1].value;
+
+	if ( objVerify.VerifyForText(strmin1, strmin2) && objVerify.ErrorCode == 0 )
+		alert('Success - matched');
+	else
+		alert('Failed - ' + objVerify.ErrorCode);
+	
+	return;
+}
+/*function fnSave()
+{	
+	
+		alert('Saved successfully');
+	
+	return;
+}*/
+
+// -->
+
+</script>
+
+<body>
+<h4><b>Capture Finger Print</b></h4>
+<p></p>
+
+<OBJECT id=objVerify style="LEFT: 0px; TOP: 0px" height=0 width=0 
+	classid="CLSID:8D613732-7D38-4664-A8B7-A24049B96117" 
+	name=objVerify  codebase="www.secugenindia.com/sgfplibx.ocx" VIEWASTEXT>
+</OBJECT>
+
+<form name="frmmain" method="post" action="registration.php">
+
+
+
+
+
+<p>
+
+
+<input type=button name=open value='Open Device' OnClick='fnOpenDevice();'>
+<p>
+
+<table border=1 cellspacing=0 cellpadding=0>
+<caption> Fingerprint Images </caption>
+<tr>
+<td>
+	<OBJECT id=objFP style="LEFT: 0px; WIDTH: 149px; TOP: 0px; HEIGHT: 182px" height=182 
+		width=149 classid="CLSID:D547FDD7-82F6-44e8-AFBA-7553ADCEE7C8" name=objFP codebase="www.secugenindia.com/sgfplibx.ocx" VIEWASTEXT>
+	<PARAM NAME="CodeName" VALUE="1">
+	</OBJECT>
+</td>
+<td>
+	<OBJECT id=objFP style="LEFT: 0px; WIDTH: 149px; TOP: 0px; HEIGHT: 182px" height=182 
+		width=149 classid="CLSID:D547FDD7-82F6-44e8-AFBA-7553ADCEE7C8" name=objFP codebase="www.secugenindia.com/sgfplibx.ocx" VIEWASTEXT>
+	<PARAM NAME="CodeName" VALUE="1">
+	</OBJECT>
+</td>
+
+</tr>
+<tr>
+<td align=center><input type=button name=btnCapture1 value='Capture' OnClick='fnCapture(0);'></td>
+<td align=center><input type=button name=btnCapture2 value='Capture' OnClick='fnCapture(1);'></td>
+</tr>
+</table>
+
+<p>
+
+min1 : <input type=text name=min1><br>
+min2 : <input type=text name=min2><br>
+<p>
+
+<input type="submit" name="submit_finger" value='Save' style='width:200px'>
+</form>
+
+</BODY>
+</HTML>

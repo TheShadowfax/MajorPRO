@@ -1,0 +1,14 @@
+
+
+
+For Java Programmers:
+---------------------
+To use "FDx SDK Pro for Java," you must FIRST install "FDx SDK Pro for Windows."
+
+"FDx SDK Pro for Java" is a wrapper for "FDx SDK Pro for Windows."
+
+
+
+For Non-Java Programmers:
+-------------------------
+Simply install the "FDx SDK Pro for Windows."
